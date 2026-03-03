@@ -14,7 +14,7 @@ import '/src/styles/style.css';
 
 // This is an example function. Replace it with your own logic.
 function sayHello() {
-  // TODO: implement your logic here
+    // TODO: implement your logic here
 }
 document.addEventListener('DOMContentLoaded', sayHello);
 
@@ -39,20 +39,20 @@ function readQuote(day) {
 
 // Function to fetch the signed-in user's name and display it in the UI
 function showName() {
-      const nameElement = document.getElementById("name-goes-here"); 
+    const nameElement = document.getElementById("name-goes-here");
 
-      onAuthReady((user) => {
+    onAuthReady((user) => {
 
-          if (!user) {
-              if (window.location.pathname.endsWith('main.html')) {
-                  location.href = 'index.html';
-              }
-              return;
-          }
+        if (!user) {
+            if (window.location.pathname.endsWith('main.html')) {
+                location.href = 'index.html';
+            }
+            return;
+        }
 
-          const name = user.displayName || user.email;
-          if (nameElement) nameElement.textContent = `${name}!`;
-      });
+        const name = user.displayName || user.email;
+        if (nameElement) nameElement.textContent = `${name}!`;
+    });
 }
 
 
@@ -78,7 +78,7 @@ function addHikeData() {
     addDoc(hikesRef, {
         code: "NV01", name: "Mount Seymour Trail", city: "North Vancouver",
         level: "hard", details: "Amazing ski slope views.", length: 8.2,
-        hike_time: 120, lat: 49.38847101455571,lng: -122.94092543551031,
+        hike_time: 120, lat: 49.38847101455571, lng: -122.94092543551031,
         last_updated: serverTimestamp()
     });
 }
@@ -128,6 +128,9 @@ async function displayCardsDynamically() {
 
             // SET THE IMAGE SOURCE
             newcard.querySelector('.card-image').src = `./images/${hike.code}.jpg`;
+
+            // Add the link with the document ID
+            newcard.querySelector(".read-more").href = `eachHike.html?docID=${doc.id}`;
 
             // Attach the new card to the container
             document.getElementById("hikes-go-here").appendChild(newcard);
